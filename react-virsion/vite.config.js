@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base:"/React-Angular-Deploy/react-virsion"
+    base: '/React-Angular-Deploy/',
+    build: {
+      outDir: 'dist',
+    },
+    plugins: [react()],
 })

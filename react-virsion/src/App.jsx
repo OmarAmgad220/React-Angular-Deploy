@@ -1,5 +1,6 @@
 import './App.css'
 import '@amiraelgarf/custom-frontend-library';
+
 function App() {
 
     const textFieldArgs={
@@ -189,7 +190,6 @@ function App() {
 /////////////////////////////////////////////////////////////////////////////////////////////
   return (
         <div>
-            <button>CILCIK ME</button>
             <hr className="Separator"></hr>
             <div className="component-section text-field-section"> 
                 <my-text-field {...textFieldArgs} ></my-text-field>
@@ -225,7 +225,6 @@ function App() {
                 <scatter-plot {...scatterArgs}></scatter-plot>
             </div>
         </div>
-    )
+  )
 }
-
-export default App
+export default App;

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://OmarAmgad220.github.io/React-Angular-Deploy",
+  "homepage": "https://OmarAmgad220.github.io/React-Angular-Deploy/",
   "name": "react-virsion",
   "private": true,
   "version": "0.0.0",
@@ -10,8 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "deploy-react": "npm run deploy"
+    "deploy": "gh-pages -d dist -b gh-pages"
   },
   "dependencies": {
     "@amiraelgarf/custom-frontend-library": "^0.2.5",
