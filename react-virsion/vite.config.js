@@ -1,11 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// https://vite.dev/config/
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export default defineConfig({
-    base: '/React-Angular-Deploy/',
-    build: {
-      outDir: 'dist',
+  base: '/React-Angular-Deploy/',
+  resolve: {
+    alias: {
+      animejs: path.resolve(__dirname, 'src/shims/animejs-default.js'),
     },
-    plugins: [react()],
-})
+  },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      external: ['@stencil/react-output-target/runtime'],
+    },
+  },
+  plugins: [react()],
+});

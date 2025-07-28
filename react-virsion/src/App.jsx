@@ -4,7 +4,7 @@ import {
     MyDropdownMenu,
     MyList,
     MyTextField,
-    RightClickMenu,
+    RightClickMenuV1,
     HistogramChart,
     BubbleChart,
     ScatterPlot
@@ -214,9 +214,9 @@ function App() {
                 <MyDropdownMenu {...dropDownArg}></MyDropdownMenu>
             </div>
 
-            <RightClickMenu {...rightClickArgs} className='right-click-section'>
+            <RightClickMenuV1 {...rightClickArgs} className='right-click-section'>
                 <h3>Right Click is working anywhere in this section</h3>
-             </RightClickMenu>
+             </RightClickMenuV1>
                 
             <div className="component-section histogram-section"> 
                 <h3>Histogram Chart</h3>
