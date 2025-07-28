@@ -15,9 +15,6 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    rollupOptions: {
-      external: ['@stencil/react-output-target/runtime'],
-    },
   },
   plugins: [react()],
 });
