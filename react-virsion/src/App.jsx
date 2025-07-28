@@ -1,5 +1,14 @@
 import './App.css'
-import '@amiraelgarf/custom-frontend-library';
+
+import {
+    MyDropdownMenu,
+    MyList,
+    MyTextField,
+    RightClickMenu,
+    HistogramChart,
+    BubbleChart,
+    ScatterPlot
+} from '@amiraelgarf/custom-frontend-library-react';
 
 function App() {
 
@@ -192,39 +201,38 @@ function App() {
         <div>
             <hr className="Separator"></hr>
             <div className="component-section text-field-section"> 
-                <my-text-field {...textFieldArgs} ></my-text-field>
+                <MyTextField {...textFieldArgs} ></MyTextField>
             </div>
 
             <div className="component-section list-section"> 
                 <h3>My List</h3>
-                <my-list {...listArgs}></my-list>
+                <MyList {...listArgs}></MyList>
             </div>
 
             <div className="component-section dropdown-section"> 
                 <h3>My Dropdown Menu</h3>
-                <my-dropdown-menu {...dropDownArg}></my-dropdown-menu>
+                <MyDropdownMenu {...dropDownArg}></MyDropdownMenu>
             </div>
 
-            <right-click-menu-v1 {...rightClickArgs} className='right-click-section'>
+            <RightClickMenu {...rightClickArgs} className='right-click-section'>
                 <h3>Right Click is working anywhere in this section</h3>
-                <p>for some reason you have to click twice for the menu to render at the correct position  </p>
-             </right-click-menu-v1>
+             </RightClickMenu>
                 
             <div className="component-section histogram-section"> 
                 <h3>Histogram Chart</h3>
-                <histogram-chart {...histogramArgs}> </histogram-chart>
+                <HistogramChart {...histogramArgs}> </HistogramChart>
             </div>
 
             <div className="component-section bubble-chart-section"> 
                 <h3>Bubble Chart</h3>
-                <bubble-chart {...bubbleArgs}></bubble-chart>
+                <BubbleChart {...bubbleArgs}></BubbleChart>
             </div>
 
             <div className="component-section scatter-plot-section"> 
                 <h3>Scatter Plot</h3>
-                <scatter-plot {...scatterArgs}></scatter-plot>
+                <ScatterPlot {...scatterArgs}></ScatterPlot>
             </div>
         </div>
-  )
+    )
 }
 export default App;

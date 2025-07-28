@@ -24,9 +24,11 @@ jobs:
           echo "@amiraelgarf:registry=https://npm.pkg.github.com/" >> ~/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
 
-
       - name: Install Latest Stencil Custom Component
         run: npm install @amiraelgarf/custom-frontend-library
+
+      - name: Install Latest Stencil Custom Component
+        run: npm i @amiraelgarf/custom-frontend-library-react
 
       - name: Build React App
         run: npm run build
