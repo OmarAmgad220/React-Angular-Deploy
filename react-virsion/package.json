@@ -13,8 +13,8 @@
     "deploy": "gh-pages -d dist -b gh-pages"
   },
   "dependencies": {
-    "@amiraelgarf/custom-frontend-library": "^0.3.1",
-    "@amiraelgarf/custom-frontend-library-react": "^1.1.2",
+    "@amiraelgarf/custom-frontend-library": "^0.4.4",
+    "@amiraelgarf/custom-frontend-library-react": "^1.2.4",
     "@floating-ui/dom": "^1.7.2",
     "@stencil/react-output-target": "^1.2.0",
     "animejs": "^4.1.2",

@@ -7,16 +7,27 @@ import {
     RightClickMenuV1,
     HistogramChart,
     BubbleChart,
-    ScatterPlot
+    ScatterPlot,
+    IxStyleLoader,
+    ToggleSwitch,
+    InfiniteScroll,
+    //Mariam's Code
+    NumberInput,
+    TextArea,
+    UiCards,
+    UiNotification,
+    PieChart,
+    LineChart,
+    HeapMap,
 } from '@amiraelgarf/custom-frontend-library-react';
+
+import { useState,useEffect } from 'react';
 
 function App() {
 
     const textFieldArgs={
         textInPlaceholder: 'Enter your name here',
         lablelText: 'Enter Name: ',
-        ColorOfLable: 'blue',
-        Theme: 'VIQ-DarkTheme',
         variantSize: 'small',
         IsRequeredToFill: false,
         size: 30,
@@ -25,7 +36,6 @@ function App() {
 /////////////////////////////////////////////////////////////////////////////////////////////
     const listArgs={
         items: ['Item 1', 'Item 2', 'Item 3','Item 4','Item 5'],
-        theme: 'VIQ-DarkTheme',
         spaceBetweenItems: 6,
         direction: 'row',
         wrap: true,
@@ -34,7 +44,6 @@ function App() {
     const dropDownArg={
         options: ['Option 1', 'Option 2', 'Option 3'],
         valeOfeachOption: ['value1', 'value2', 'value3'],
-        theme: 'Siemens-LightTheme',
         variantSize: 'medium',
     }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -197,9 +206,100 @@ function App() {
         ]
     }
 /////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+    const numberInputArgs={
+        value: 5,
+        min: 0,
+        max: 10,
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
+    const textAreaArgs={
+        placeholder: 'Type something...',
+        value: '' 
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
+    const uiCardsArgs={
+        cardTitle: 'Card Header'
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
+    const uiNotificationArgs={
+        type: "error",
+        placement: 'top-right',
+        header: 'Info',
+        content: "yes",
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
+    const pieChartArgs={
+        data: [
+            { label: 'A', value: 30 },
+            { label: 'B', value: 70 },
+            { label: 'C', value: 45 },
+        ]
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
+    const lineChartArgs={
+        categories: ['Q1', 'Q2', 'Q3', 'Q4'],
+        series:[
+            { name: 'Revenue', data: [40, 55, 65, 80] },
+            { name: 'Expenses', data: [20, 30, 50, 60] },
+         ]
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
+    const heatmapChartArgs={
+        rows: 7,
+        cols: 10,
+        nameOfChart: 'Heatmap Chart',
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+     const [recordsReact, setRecords] = useState([]);
+  const [totalRecordsReact, setTotalRecords] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [errorReact, setError] = useState();
+
+  // Fetch products
+  const fetchFunction = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("https://www.theaudiodb.com/api/v1/json/2/mvid.php?i=112024");
+      const data = await response.json();
+      setTotalRecords([...data.mvids]);
+    } catch (error) {
+      console.error("Error fetching records:", error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch on mount
+  useEffect(() => {
+    fetchFunction();
+  }, []);
+
+  const renderTheRecord = () => {
+    return recordsReact.map(record => (
+      <li className='item'><img src={record.strTrackThumb} alt="music icon"/>{record.strTrack}</li>
+    ));
+  };
+
+  const infiniteScrollArgs = {
+    numberOfItemToShow: 10,
+    records: recordsReact,
+    totalRecords: totalRecordsReact,
+    isLoading: loading,
+    myError: errorReact,
+    onRecordsChange: (e) => setRecords(e.detail), 
+  };
   return (
         <div>
-            <hr className="Separator"></hr>
+            <IxStyleLoader></IxStyleLoader>
+            <div className='toggle-switch-section'>
+                <h3>Hey You Press Me</h3>
+                <ToggleSwitch></ToggleSwitch>
+            </div>
+            
             <div className="component-section text-field-section"> 
                 <MyTextField {...textFieldArgs} ></MyTextField>
             </div>
@@ -217,6 +317,12 @@ function App() {
             <RightClickMenuV1 {...rightClickArgs} className='right-click-section'>
                 <h3>Right Click is working anywhere in this section</h3>
              </RightClickMenuV1>
+            
+            <div className='component-section inifinite-scroll-section'>
+                <InfiniteScroll {...infiniteScrollArgs}>
+                    <div slot="replaceMe">{renderTheRecord()}</div>
+                </InfiniteScroll>
+            </div>
                 
             <div className="component-section histogram-section"> 
                 <h3>Histogram Chart</h3>
@@ -232,6 +338,44 @@ function App() {
                 <h3>Scatter Plot</h3>
                 <ScatterPlot {...scatterArgs}></ScatterPlot>
             </div>
+
+            <hr className='separator-line'></hr>
+
+            <div className="component-section number-input-section"> 
+                <h3>Number Input</h3>
+                <NumberInput {...numberInputArgs}></NumberInput>
+            </div>
+
+            <div className="component-section text-area-section"> 
+                <h3>Text Area</h3>
+                <TextArea {...textAreaArgs}></TextArea>
+            </div>
+
+            <div className="component-section cards-section"> 
+                <h3>UI Cards</h3>
+                <UiCards {...uiCardsArgs}></UiCards>
+            </div>
+
+            <div className="component-section notification-section"> 
+                <h3>Notification</h3>
+                <UiNotification {...uiNotificationArgs}></UiNotification>
+            </div>
+
+            <div className="component-section pie-chart-section"> 
+                <h3>Pie Chart</h3>
+                <PieChart {...pieChartArgs}></PieChart>
+            </div>
+
+            <div className="component-section line-chart-section"> 
+                <h3>Line Chart</h3>
+                <LineChart {...lineChartArgs}></LineChart>
+            </div>
+
+            <div className="component-section heatmap-chart-section"> 
+                <h3>Heatmap Chart</h3>
+                <HeapMap {...heatmapChartArgs}></HeapMap>
+            </div>
+           
         </div>
     )
 }
