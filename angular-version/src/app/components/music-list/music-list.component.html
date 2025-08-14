@@ -1,0 +1,9 @@
+<h1>Record</h1>
+
+<ul>
+  @for (item of totalRecordsAngular(); track item.idTrack) {
+    <li id={{item.idTrack}} class="item">
+      <img src={{item.strTrackThumb}} alt="music icon"/>{{item.strTrack}}
+    </li>
+  }
+</ul>

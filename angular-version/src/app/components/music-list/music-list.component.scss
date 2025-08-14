@@ -1,0 +1,21 @@
+
+
+.item {
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 6px;
+  transition: background-color 0.25s ease,
+              transform 0.2s ease,
+              box-shadow 0.25s ease;
+  color: white;
+  border: 1px solid forestgreen;
+
+  /* Soft shadow for depth */
+  box-shadow: 0 2px 5px greenyellow;
+}
+
+.item img
+{
+    max-width: 21px ;
+    max-height: 21px ;
+}

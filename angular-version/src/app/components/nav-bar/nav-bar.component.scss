@@ -1,0 +1,52 @@
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #121212, #1db954);  padding: 0 20px;
+  border-radius: 15px;
+  color: azure;
+}
+
+.nav-title {
+  color: #1db954;
+  flex: 1;
+}
+
+.nav-search {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-search input {
+  width: 60%;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background-color: #222;
+  color: white;
+}
+
+.nav-search input::placeholder {
+  color: #aaa;
+}
+
+.nav-content {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.nav-content li:hover
+{
+  color: #121212;
+  cursor: pointer;
+  background-color: #189242;
+  border-radius: 5px;
+  padding: 8px 15px;
+}

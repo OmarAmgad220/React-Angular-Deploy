@@ -253,18 +253,23 @@ function App() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-     const [recordsReact, setRecords] = useState([]);
+    const [recordsReact, setRecords] = useState([]);
   const [totalRecordsReact, setTotalRecords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorReact, setError] = useState();
 
   // Fetch products
-  const fetchFunction = async () => {
+  
+
+  //Only one time 
+  useEffect(() => {
+    const fetchFunction = async () => {
     try {
       setLoading(true);
       const response = await fetch("https://www.theaudiodb.com/api/v1/json/2/mvid.php?i=112024");
       const data = await response.json();
       setTotalRecords([...data.mvids]);
+      console.log("hello there")
     } catch (error) {
       console.error("Error fetching records:", error);
       setError(error);
@@ -272,15 +277,12 @@ function App() {
       setLoading(false);
     }
   };
-
-  // Fetch on mount
-  useEffect(() => {
     fetchFunction();
   }, []);
 
   const renderTheRecord = () => {
     return recordsReact.map(record => (
-      <li className='item'><img src={record.strTrackThumb} alt="music icon"/>{record.strTrack}</li>
+      <li key={record.idTrack} className='item'><img src={record.strTrackThumb} alt="music icon"/>{record.strTrack}</li>
     ));
   };
 
