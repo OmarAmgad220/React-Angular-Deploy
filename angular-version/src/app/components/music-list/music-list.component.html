@@ -1,34 +1,57 @@
 <div class="music-list-container">
-  <div class="table-header">
-    <div class="col index">#</div>
-    <div class="col title">Track</div>
-    <div class="col album">Album</div>
-    <div class="col duration">Duration</div>
+  <!-- Left Sidebar -->
+  <div class="left-side-container">
+    <ul class="Content-left-side">
+      <li><h3><i class="fas fa-music"></i> Top Tracks</h3></li>
+      <li><h3><i class="fas fa-user"></i> Artists</h3></li>
+      <li><h3><i class="fas fa-compact-disc"></i> Albums</h3></li>
+    </ul>
   </div>
 
-  <infinite-scroll class="infinite-scroll-container"
-    [numberOfItemToShow]="infiniteScrollArgs.numberOfItemToShow"
-    [fetchRecords]="infiniteScrollArgs.fetchRecords"
-    [totalRecords]="infiniteScrollArgs.totalRecords()"
-    [isLoading]="infiniteScrollArgs.isLoading()"
-    [myError]="infiniteScrollArgs.myError()"
-    (recordsChange)="infiniteScrollArgs.onRecordsChange($event)"
-  >
-    <li *ngFor="let item of recordAngular(); let i = index" slot="replaceMe" class="table-row" [id]="item.idTrack">
-      <div class="col index">{{ i + 1 }}</div>
-
-      <div class="col title">
-        <img [src]="item.strTrackThumb" alt="track cover" class="track-thumb"/>
-        <div class="track-title">{{ item.strTrack }} - Imagine Dragons</div>
-      </div>
-
-      <div class="col album">
-        <img [src]="item.strAlbumThumb || item.strTrackThumb" alt="album cover" class="album-thumb"/>
-        <div class="album-title">{{ item.strAlbum }}</div>
-      </div>
-
-      <div class="col duration">{{ formatDuration(item.intDuration) }}</div>
+  <!-- Center Section -->
+  <div class="list-wrapper">
+    <div class="table-header">
+      <div class="col index header">#</div>
+      <div class="col title">Track</div>
+      <div class="col album">Album</div>
+      <div class="col duration">Duration</div>
       <div class="col icon">▶</div>
-    </li>
-  </infinite-scroll>
+  </div>
+
+    <ul class="infinite-scroll-container">
+      <li *ngFor="let track of totalRecordsAngular(); let i = index"
+          class="table-row"
+          (click)="onClickHandel(track)">
+
+        <div class="col index">{{ i + 1 }}</div>
+
+        <div class="col title">
+          <img class="track-thumb" [src]="track.thumbnail" alt="{{ track.title }}" />
+          <span class="track-title">{{ track.title }}</span>
+        </div>
+
+        <div class="col album">
+          <img class="album-thumb" [src]="track.albumCover" alt="{{ track.albumTitle }}" />
+          <span class="album-title">{{ track.albumTitle }}</span>
+        </div>
+
+        <div class="col duration">{{ formatDuration(track.duration) }}</div>
+
+        <div class="col icon">▶</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Right Sidebar -->
+  <div class="Right-side-container" *ngIf="isShow() && selectedTrack()">
+    <img [src]="selectedTrack()!.thumbnail"
+         alt="music photo"
+         class="now-playing-cover">
+
+    <p>Now Playing</p>
+    <h3>{{ selectedTrack()?.title }}</h3>
+    <h4>{{ selectedTrack()?.albumTitle }}</h4>
+
+    <audio controls autoplay [src]="selectedTrack()?.trackUrl"></audio>
+  </div>
 </div>

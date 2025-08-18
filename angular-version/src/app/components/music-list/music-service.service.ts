@@ -2,32 +2,49 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+// New JSON typings
 export type MusicTrack = {
-  idTrack: string | null;
-  idAlbum: string | null;
-  strArtist: string | null;
-  strTrack: string | null;
-  intDuration: string | null;
-  strTrackThumb: string | null;
-  strAlbum: string | null;
-  strAlbumThumb: string | null; // optional
-  strMusicFile: string | null;  // actual audio URL
+  trackId: string;
+  title: string;
+  duration: string;
+  trackUrl: string;
+  thumbnail: string;
 };
 
+export type Album = {
+  albumId: string;
+  title: string;
+  releaseYear: number;
+  coverUrl: string;
+  tracks: MusicTrack[];
+};
+
+export type Artist = {
+  id: string;
+  name: string;
+  genre: string;
+  albums: Album[];
+};
 
 export type MusicData = {
-  track: MusicTrack[];
+  artist: Artist;
 };
+
+export type FlattenedTrack = MusicTrack & {
+  albumTitle: string;
+  albumCover: string;
+  artistName: string;
+};
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MusicServiceService {
   private http = inject(HttpClient);
+  apiUrl = 'music-data.json'; // placed in /assets/music-data.json
 
   getMusicFromApi(): Observable<MusicData> {
-    return this.http.get<MusicData>(
-      'https://www.theaudiodb.com/api/v1/json/2/track.php?m=2402053'
-    );
+    return this.http.get<MusicData>(this.apiUrl);
   }
 }

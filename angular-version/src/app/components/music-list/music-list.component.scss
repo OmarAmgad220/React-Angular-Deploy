@@ -1,16 +1,119 @@
+infinite-scroll::part(containerList) {
+  height: 700px;
+}
+
 .music-list-container {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  color: white;
+  height: calc(100vh - 75px);
+  color: #fff;
   font-family: Arial, sans-serif;
+  background: linear-gradient(-90deg, #121212, #01200c);
+}
+
+/* Left Sidebar */
+.left-side-container {
+  width: 220px;
+  background: linear-gradient(80deg, #121212, #001307);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.Content-left-side {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-side-container i {
+  padding-right: 10px;
+}
+
+.left-side-container li {
+  display: block;
+  padding: 8px 15px;
+  margin: 5px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.left-side-container li:hover {
+  background: #333;
+}
+
+/* Right Player Panel */
+/* Right Player Panel */
+.Right-side-container {
+  padding: 40px 20px;
+  width: 400px;
+  min-width: 300px;
+  background: linear-gradient(180deg, #0d0d0d, #1c1c1c);
+  border-left: 1px solid #333;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* full viewport */
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  color: #fff; /* All text inside will be white */
+}
+
+.Right-side-container img.now-playing-cover {
+  max-width: 240px;
+  max-height: 240px;
+  width: 100%;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
+  object-fit: cover;
+}
+
+.Right-side-container p {
+  font-size: 14px;
+  color: #aaa; /* Softer gray for "Now Playing" */
+  margin: 8px 0;
+  letter-spacing: 1px;
+}
+
+.Right-side-container h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 8px 0 4px 0;
+  color: #fff; /* Bright white for track title */
+}
+
+.Right-side-container h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 20px 0;
+  color: #1ed760; /* Spotify-like green for album name */
+}
+
+/* Audio player customization */
+.Right-side-container audio {
+  width: 100%;
+  max-width: 320px;
+  outline: none;
+  margin-top: 12px;
+  filter: invert(1) hue-rotate(180deg);
+  /* Makes default controls white instead of black */
+  border-radius: 8px;
+}
+
+
+/* Track List */
+.list-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .table-header,
 .table-row {
   display: grid;
-  grid-template-columns: 40px 3fr 3fr 60px 40px; /* # | Track | Album | Duration | Icon */
+  grid-template-columns: 40px 3fr 3fr 80px 40px; /* # | Track | Album | Duration | Icon */
   align-items: center;
   padding: 8px 12px;
 }
@@ -20,24 +123,20 @@
   border-bottom: 1px solid #555;
 }
 
-.track-list,
 .infinite-scroll-container {
+  flex: 1;
+  max-width: 1280px;
   list-style: none;
-  padding: 0;
-  margin: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.infinite-scroll-container {
-  height: calc(100vh - 200px); /* full viewport minus header/footer height */
-  overflow-y: auto;            /* scroll appears when content exceeds */
+  height: calc(100vh - 200px);
+  overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #1ed760 #181818;
 }
 
-/* Chrome, Edge, Safari */
+/* Custom Scrollbar */
 .infinite-scroll-container::-webkit-scrollbar {
   width: 8px;
 }
@@ -51,20 +150,22 @@
   background-color: #1ed760;
   border-radius: 4px;
   border: 2px solid #181818;
+  transition: background-color 0.2s;
 }
 
 .infinite-scroll-container::-webkit-scrollbar-thumb:hover {
   background-color: #1aa34a;
 }
 
+/* Table Rows */
 .table-row {
   border-bottom: 1px solid #333;
-  transition: background-color 0.2s;
+  transition: background 0.25s ease;
   cursor: pointer;
 }
 
 .table-row:hover {
-  background-color: #282828;
+  background: linear-gradient(-90deg, #121212, #024e1e);
 }
 
 .col.title,
@@ -76,9 +177,9 @@
 
 .track-thumb,
 .album-thumb {
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -92,14 +193,23 @@
   text-overflow: ellipsis;
 }
 
+.col.index {
+  text-align: center;
+}
+
+.col.index.header {
+  padding-left: 20px;
+}
+
 .col.duration {
   text-align: right;
+  font-size: 13px;
 }
 
 .col.icon {
   text-align: center;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.25s ease;
 }
 
 .table-row:hover .col.icon {
