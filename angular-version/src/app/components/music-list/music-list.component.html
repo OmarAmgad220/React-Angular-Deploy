@@ -1,9 +1,34 @@
-<h1>Record</h1>
+<div class="music-list-container">
+  <div class="table-header">
+    <div class="col index">#</div>
+    <div class="col title">Track</div>
+    <div class="col album">Album</div>
+    <div class="col duration">Duration</div>
+  </div>
 
-<ul>
-  @for (item of totalRecordsAngular(); track item.idTrack) {
-    <li id={{item.idTrack}} class="item">
-      <img src={{item.strTrackThumb}} alt="music icon"/>{{item.strTrack}}
+  <infinite-scroll class="infinite-scroll-container"
+    [numberOfItemToShow]="infiniteScrollArgs.numberOfItemToShow"
+    [fetchRecords]="infiniteScrollArgs.fetchRecords"
+    [totalRecords]="infiniteScrollArgs.totalRecords()"
+    [isLoading]="infiniteScrollArgs.isLoading()"
+    [myError]="infiniteScrollArgs.myError()"
+    (recordsChange)="infiniteScrollArgs.onRecordsChange($event)"
+  >
+    <li *ngFor="let item of recordAngular(); let i = index" slot="replaceMe" class="table-row" [id]="item.idTrack">
+      <div class="col index">{{ i + 1 }}</div>
+
+      <div class="col title">
+        <img [src]="item.strTrackThumb" alt="track cover" class="track-thumb"/>
+        <div class="track-title">{{ item.strTrack }} - Imagine Dragons</div>
+      </div>
+
+      <div class="col album">
+        <img [src]="item.strAlbumThumb || item.strTrackThumb" alt="album cover" class="album-thumb"/>
+        <div class="album-title">{{ item.strAlbum }}</div>
+      </div>
+
+      <div class="col duration">{{ formatDuration(item.intDuration) }}</div>
+      <div class="col icon">▶</div>
     </li>
-  }
-</ul>
+  </infinite-scroll>
+</div>
