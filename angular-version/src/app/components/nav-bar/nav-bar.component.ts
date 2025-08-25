@@ -5,11 +5,12 @@ import { filterBy, CompositeFilterDescriptor  } from '@progress/kendo-data-query
 import { CommonModule } from '@angular/common';
 import { NavSelectedItmeService } from './nav-selectedItme.service';
 import { FlattenedTrack } from '../music-list/music-service.service';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'nav-bar',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
   standalone:true

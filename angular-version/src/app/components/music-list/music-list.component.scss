@@ -2,7 +2,7 @@
 .music-list-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  // width: 100%;
   height: 92%;
   font-family: Arial, sans-serif;
   color: #fff;
@@ -22,6 +22,7 @@
   align-items: center;
   text-align: center;
   box-sizing: border-box;
+
 }
 
 .Right-side-container img.now-playing-cover {
@@ -68,7 +69,9 @@
   flex-direction: column;
   min-width: 0;
 }
-
+.list-wrapper h1{
+  margin-left: 50px;
+}
 .table-header,
 .table-row {
   display: grid;
@@ -169,14 +172,6 @@
   .music-list-container {
     flex-direction: column;
     height: auto;
-  }
-
-  .left-side-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    border-radius: 0;
-    margin-bottom: 16px;
   }
 
   .Right-side-container {
