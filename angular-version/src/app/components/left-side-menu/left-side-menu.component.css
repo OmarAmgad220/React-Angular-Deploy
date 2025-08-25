@@ -1,0 +1,31 @@
+.left-side-container {
+  width: 220px;
+  background: linear-gradient(80deg, #121212, #001307);
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.Content-left-side {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.left-side-container li {
+  display: block;
+  padding: 8px 15px;
+  margin: 5px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.left-side-container li:hover {
+  background: #333;
+}
+
+.left-side-container i {
+  margin-right: 10px;
+}

@@ -3,13 +3,14 @@ import { MusicServiceService, MusicData, FlattenedTrack } from './music-service.
 import { CommonModule } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
 import { NavSelectedItmeService } from '../nav-bar/nav-selectedItme.service';
+import { LeftSideMenuComponent } from '../left-side-menu/left-side-menu.component';
 
 
 export let allSongData!:FlattenedTrack[]
 @Component({
   selector: 'music-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,LeftSideMenuComponent],
   templateUrl: './music-list.component.html',
   styleUrl: './music-list.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

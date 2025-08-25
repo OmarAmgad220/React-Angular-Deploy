@@ -1,12 +1,6 @@
 <div class="music-list-container">
   <!-- Left Sidebar -->
-  <div class="left-side-container">
-    <ul class="Content-left-side">
-      <li><h3><i class="fas fa-music"></i> Top Tracks</h3></li>
-      <li><h3><i class="fas fa-user"></i> Artists</h3></li>
-      <li><h3><i class="fas fa-compact-disc"></i> Albums</h3></li>
-    </ul>
-  </div>
+  <app-left-side-menu></app-left-side-menu>
 
   <!-- Center Section -->
   <div class="list-wrapper">
@@ -18,7 +12,7 @@
       <div class="col duration">Duration</div>
       <div class="col icon">▶</div>
   </div>
-    <infinite-scroll
+    <!-- <infinite-scroll
     [numberOfItemToShow]="infiniteScrollArgs.numberOfItemToShow"
     [records]="recordAngular()"
     [totalRecords]="totalRecordsAngular()"
@@ -49,10 +43,9 @@
 
         <div class="col icon">▶</div>
       </li>
-  </infinite-scroll>
+  </infinite-scroll> -->
 
-
-  <!-- <ul class="infinite-scroll-container">
+  <ul class="infinite-scroll-container">
       <li *ngFor="let track of totalRecordsAngular(); let i = index"
           class="table-row"
           (click)="onClickHandel(track)"
@@ -74,7 +67,8 @@
 
         <div class="col icon">▶</div>
       </li>
-    </ul> -->
+    </ul>
+
   </div>
 
   <!-- Right Sidebar -->

@@ -3,45 +3,12 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh; /* full screen */
-  overflow: hidden; /* ⬅️ prevents body/page scroll */
+  height: 92%;
   font-family: Arial, sans-serif;
   color: #fff;
   background: linear-gradient(-90deg, #121212, #01200c);
 }
 
-
-/* === LEFT SIDEBAR === */
-.left-side-container {
-  width: 220px;
-  background: linear-gradient(80deg, #121212, #001307);
-  padding: 16px;
-  box-sizing: border-box;
-  border-radius: 10px;
-}
-
-.Content-left-side {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.left-side-container li {
-  display: block;
-  padding: 8px 15px;
-  margin: 5px 0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.25s ease;
-}
-
-.left-side-container li:hover {
-  background: #333;
-}
-
-.left-side-container i {
-  margin-right: 10px;
-}
 
 /* === RIGHT SIDEBAR === */
 .Right-side-container {
@@ -170,31 +137,30 @@
 }
 
 /* === SCROLLBAR === */
-infinite-scroll::part(containerList) {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto; 
-  height: 100%;
+.infinite-scroll-container{
+  overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #1ed760 #121212;
+  scrollbar-color: #1ed760 #181818;
 }
 
-infinite-scroll::part(containerList)::-webkit-scrollbar {
+.infinite-scroll-container::-webkit-scrollbar {
   width: 10px;
 }
 
-infinite-scroll::part(containerList)::-webkit-scrollbar-track {
+.infinite-scroll-container::-webkit-scrollbar-track {
   background: #121212;
   border-radius: 6px;
 }
 
-infinite-scroll::part(containerList)::-webkit-scrollbar-thumb {
+.infinite-scroll-container::-webkit-scrollbar-thumb {
   background-color: #1ed760;
   border-radius: 6px;
   border: 2px solid #121212;
+  transition: background-color 0.2s;
 }
 
-infinite-scroll::part(containerList)::-webkit-scrollbar-thumb:hover {
+.infinite-scroll-container::-webkit-scrollbar-thumb:hover {
+
   background-color: #1aa34a;
 }
 
