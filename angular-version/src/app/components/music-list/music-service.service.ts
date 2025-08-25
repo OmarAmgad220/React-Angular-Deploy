@@ -47,4 +47,9 @@ export class MusicServiceService {
   getMusicFromApi(): Observable<MusicData> {
     return this.http.get<MusicData>(this.apiUrl);
   }
+
+  // constructor(private http:HttpClient)
+  // {
+
+  // }
 }

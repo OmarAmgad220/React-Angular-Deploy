@@ -10,6 +10,7 @@
 
   <!-- Center Section -->
   <div class="list-wrapper">
+    <h1>{{nameOfArtist}}</h1>
     <div class="table-header">
       <div class="col index header">#</div>
       <div class="col title">Track</div>
@@ -17,11 +18,20 @@
       <div class="col duration">Duration</div>
       <div class="col icon">▶</div>
   </div>
+    <infinite-scroll
+    [numberOfItemToShow]="infiniteScrollArgs.numberOfItemToShow"
+    [records]="recordAngular()"
+    [totalRecords]="totalRecordsAngular()"
+    [isLoading]="loading()"
+    [myError]="errorAngular()"
+    (recordsChange)="infiniteScrollArgs.onRecordsChange($event)"
+    [fetchRecords]="infiniteScrollArgs.fetchRecords"
+    part="containerList">
 
-    <ul class="infinite-scroll-container">
-      <li *ngFor="let track of totalRecordsAngular(); let i = index"
+      <li *ngFor="let track of recordAngular(); let i = index"
           class="table-row"
-          (click)="onClickHandel(track)">
+          (click)="onClickHandel(track)"
+          slot="replaceMe">
 
         <div class="col index">{{ i + 1 }}</div>
 
@@ -39,19 +49,44 @@
 
         <div class="col icon">▶</div>
       </li>
-    </ul>
+  </infinite-scroll>
+
+
+  <!-- <ul class="infinite-scroll-container">
+      <li *ngFor="let track of totalRecordsAngular(); let i = index"
+          class="table-row"
+          (click)="onClickHandel(track)"
+          slot="replaceMe">
+
+        <div class="col index">{{ i + 1 }}</div>
+
+        <div class="col title">
+          <img class="track-thumb" [src]="track.thumbnail" alt="{{ track.title }}" />
+          <span class="track-title">{{ track.title }}</span>
+        </div>
+
+        <div class="col album">
+          <img class="album-thumb" [src]="track.albumCover" alt="{{ track.albumTitle }}" />
+          <span class="album-title">{{ track.albumTitle }}</span>
+        </div>
+
+        <div class="col duration">{{ formatDuration(track.duration) }}</div>
+
+        <div class="col icon">▶</div>
+      </li>
+    </ul> -->
   </div>
 
   <!-- Right Sidebar -->
-  <div class="Right-side-container" *ngIf="isShow() && selectedTrack()">
-    <img [src]="selectedTrack()!.thumbnail"
+  <div class="Right-side-container" *ngIf="currentSelectedTrack() as track">
+    <img [src]="track.thumbnail"
          alt="music photo"
          class="now-playing-cover">
 
     <p>Now Playing</p>
-    <h3>{{ selectedTrack()?.title }}</h3>
-    <h4>{{ selectedTrack()?.albumTitle }}</h4>
+    <h3>{{ track.title }}</h3>
+    <h4>{{ track.albumTitle }}</h4>
 
-    <audio controls autoplay [src]="selectedTrack()?.trackUrl"></audio>
+    <audio controls autoplay [src]="track.trackUrl"></audio>
   </div>
 </div>

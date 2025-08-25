@@ -4,12 +4,27 @@
   </div>
 
  <div class="nav-search">
-    <input type="text" placeholder="Search music..." />
+
+      <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="isDropDownMenuOpen = true"
+      placeholder="Search..."
+    />
+
+    <ul *ngIf="isDropDownMenuOpen && filteredItems.length > 0" class="dropdown">
+      <li *ngFor="let item of filteredItems" (click)="selectedItem(item)">
+        <img [src]="item.thumbnail" alt="{{ item.title }}" />
+        <span>{{ item.title }}</span>
+      </li>
+    </ul>
+
+
   </div>
-  
+
   <ul class="nav-content">
-    <li>Explore</li>
-    <li>Library</li>
+    <li>Sign up</li>
+    <li>LogIn</li>
   </ul>
 
 
